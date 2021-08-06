@@ -1,0 +1,147 @@
+*{
+    margin: 0;
+    padding: 0;
+}
+.main-navbar ul li{
+    list-style: none;
+    text-decoration: none;
+    display: inline-block;
+    margin: 0;
+    padding: 0;
+    font-size: 33px;
+}
+.main-navbar img{
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+}
+.user-navs{
+    margin-left: 18% !important;
+}
+.offcanvas{
+    background-color: snow !important;
+}
+.offcanvas-header img{
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+}
+#postItem{
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+}
+
+
+
+/* CSS for large screens */
+@media only screen and (min-width: 600px) {
+    
+   .post div{
+    margin: 6px !important;
+   }
+   .offcanvas{
+       width: 330px !important;
+   }
+   
+   #createPost{
+    width: 60%;
+   }
+   .offcanvas-body div{
+       margin-top: 10%;
+       font-weight: bold;
+       font-size: 18px;
+       font-family: "Lucida Console", "Courier New", monospace;
+   }
+
+}
+.loginDiv , .signupDiv{
+    border-radius: 30px !important;
+}
+.loginDiv button a{
+    text-decoration: none !important;
+}
+
+
+/* CSS for small Screens  */
+@media only screen and (max-width: 600px) {
+    .main-navbar ul li{
+        font-size: 25px;
+    }
+    .user-navs{
+        margin-left: 15% !important;
+    }
+    .offcanvas-body div{
+        margin-top: 10%;
+        font-weight: bold;
+        font-size: 15px;
+       }
+    .signupDiv , .loginDiv{
+        width: 80% !important;
+    }
+    .offcanvas{
+        width: 270px !important;
+    }
+    .offcanvas-body div{
+        margin-top: 10%;
+        font-weight: bold;
+        font-size: 13px;
+        font-family: "Lucida Console", "Courier New", monospace;
+    }
+  }
+  
+@media only screen and (max-width: 900px) {
+    .main-navbar ul li{
+        font-size: 30px;
+    }
+    .user-navs{
+        margin-left: 15% !important;
+    }
+  }
+  
+@media only screen and (max-width: 540px) {
+    .main-navbar ul li{
+        font-size: 30px;
+    }
+    .user-navs{
+        margin-left: 13% !important;
+    }
+  }
+  
+@media only screen and (max-width: 450px) {
+    .main-navbar ul li{
+        font-size: 30px;
+    }
+    .user-navs{
+        margin-left: 10% !important;
+    }
+  }
+  
+@media only screen and (max-width: 365px) {
+    .main-navbar ul li{
+        font-size: 30px;
+    }
+    .user-navs{
+        margin-left: 8% !important;
+    }
+  }
+  
+@media only screen and (max-width: 325px) {
+    .main-navbar ul li{
+        font-size: 20px;
+    }
+    .user-navs{
+        margin-left: 10% !important;
+    }
+}
+  @media only screen and (max-width: 295px) {
+      .main-navbar ul li{
+          font-size: 17px;
+      }
+      .user-navs{
+          margin-left: 8% !important;
+      }
+      .offcanvas{
+          width: 150px !important;
+      }
+}
