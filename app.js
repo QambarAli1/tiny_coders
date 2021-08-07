@@ -110,11 +110,12 @@ var getCurrentUser = () => {
     currentUserNumber.innerHTML = user.number;   
 }
 
+
+// create Post
 const post = () => {
     var title = document.getElementById('title');
     var description = document.getElementById('description');
     if(title.value=="" || description.value==""){
-     console.log('1+++');
      alert(`Enter both Title and Description to create post`);
     }
     else{
