@@ -1,8 +1,9 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const cors = require('cors');
-const { response, request } = require('express');
-const post_model = require('./schema')
+const { response, request, query } = require('express');
+const postModel = require('./schema');
+const signupModel = require('./signupSchema');
 const app = express();
 const port = 5000;
 app.use(express.urlencoded({ extended: true }));
@@ -10,20 +11,23 @@ app.use(express.json())
 app.use(cors());
 
 const db_uri = "mongodb+srv://admin:admin@cluster0.mhpe2.mongodb.net/test"
-mongoose.connect(db_uri,{
+mongoose.connect(db_uri, {
     useNewUrlParser: true,
     useUnifiedTopology: true
 })
 
 
-app.post('/createPost',(request,response)=>{
+
+// create post on dashboard
+
+app.post('/createPost', (request, response) => {
     try {
         const body = request.body;
-        post_model.create(body,(error,data)=>{
-            if(error){
+        postModel.create(body, (error, data) => {
+            if (error) {
                 throw error;
             }
-            else{
+            else {
                 console.log(data);
                 response.send(data);
             }
@@ -33,14 +37,16 @@ app.post('/createPost',(request,response)=>{
     }
 })
 
-// Read All
+
+
+// Read All posts
 app.get("/readAll", (request, response) => {
     try {
-        post_model.find({}, (error, data) => {
+        postModel.find({}, (error, data) => {
             if (error) {
                 throw error
             } else {
-                console.log(data)
+                console.log(`All posts >>>> ${data}`)
                 response.send(data);
             }
         })
@@ -50,31 +56,52 @@ app.get("/readAll", (request, response) => {
 })
 
 
-// Reads one with specific title
 
-app.get("/readOne", (request, response) => {
+
+// sign up api
+
+app.post('/signup', (request, response) => {
     try {
-        const { title } = request.headers;
-        if (title) {
-            post_model.findOne({title}, (error, data) => {
-                if (error) {
-                    throw error;
-                } else {
-                    response.send(data);
-                }
-            });
-        }
-        else{
-            response.send(`Fieled Missing`)
-        }
-        
+        const body = request.body
+        signupModel.create(body, (error, data) => {
+            if (error) {
+                throw error;
+            }
+            else {
+                response.send(data)
+                console.log(data);
+            }
+        })
     } catch (error) {
-        response.send(`Got an error during get posts `, error.message);
+        response.send(`Error on signup >>> ${error.message}`)
+    }
+})
+
+
+
+// login api
+
+app.get("/signup", (request, response) => {
+    try {
+        var email = request.headers.email;
+        console.log(email);
+        const query = {
+            email: email
+        }
+
+        signupModel.findOne(query, (error, data) => {
+            if (error) {
+                throw error;
+            } else {
+                response.send(JSON.stringify(data));
+            }
+        });
+
+
+    } catch (error) {
+        response.send(`Got an error during login  `, error);
     }
 });
-
-
-
 
 
 mongoose.connection.on("connected", () => console.log("mongoose connected"));
@@ -82,4 +109,4 @@ mongoose.connection.on("error", (error) => console.log(`mongoose error >>> ${err
 
 
 
-app.listen(port,()=>console.log(`App running at localhost:${port}`));
+app.listen(port, () => console.log(`App running at localhost:${port}`));
